@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 *,
 *::before,
 *::after {
@@ -8,4 +12,150 @@
 
 body {
   overflow: hidden;
+}
+
+/* Winner Modal Styles */
+.winnerOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(12, 13, 18, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.winnerCard {
+  background-color: #1e293b; /* slate-800 */
+  border: 1px solid #334155; /* slate-700 */
+  border-radius: 1rem; /* rounded-2xl */
+  padding: 2rem; /* p-8 */
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  width: 400px;
+  max-width: 90vw;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transition: all 0.3s ease;
+}
+
+.winnerCard:hover {
+  transform: translate(-50%, -50%) scale(1.02);
+  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.3);
+}
+
+.winnerContent {
+  text-align: center;
+}
+
+.winnerTitle {
+  font-size: 2.25rem; /* text-4xl */
+  font-weight: 800; /* font-extrabold */
+  margin-bottom: 1.5rem; /* mb-6 */
+  letter-spacing: 0.025em; /* tracking-wide */
+}
+
+.winnerAnimation {
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.winnerIconContainer {
+  margin-bottom: 2rem; /* mb-8 */
+}
+
+.winnerIconWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.winnerIcon {
+  width: 4rem; /* w-16 */
+  height: 4rem; /* h-16 */
+  border-radius: 50%; /* rounded-full */
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.drawIcons {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem; /* space-x-2 */
+}
+
+.drawIcon {
+  width: 1.25rem; /* w-5 */
+  height: 1.25rem; /* h-5 */
+  border-radius: 50%; /* rounded-full */
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.drawIconFirst {
+  background-color: #ef4444; /* red-500 */
+}
+
+.drawIconSecond {
+  background-color: #3b82f6; /* blue-500 */
+  animation-delay: 0.1s;
+}
+
+.drawIconThird {
+  background-color: #10b981; /* green-500 */
+  animation-delay: 0.2s;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.restartButton {
+  width: 100%;
+  padding: 0.75rem 1.5rem; /* px-6 py-3 */
+  border-radius: 0.75rem; /* rounded-xl */
+  background: #3b82f6; /* from-blue-500 to-blue-600 */
+  color: white;
+  font-size: 1.125rem; /* text-lg */
+  font-weight: 700; /* font-bold */
+  border: 1px solid #1d4ed8; /* border-blue-700 */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  transform: scale(1);
+}
+
+.restartButton:hover {
+  background: #2563eb; /* from-blue-600 to-blue-700 */
+  transform: scale(1.05);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.restartButton:active {
+  transform: scale(0.95);
+}
+
+.restartButtonContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.restartIcon {
+  width: 1.25rem; /* h-5 */
+  height: 1.25rem; /* w-5 */
+  margin-right: 0.5rem; /* mr-2 */
 }
