@@ -1,7 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 *,
 *::before,
 *::after {
@@ -12,55 +8,265 @@
 
 body {
   overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-/* Winner Modal Styles */
-.winnerOverlay {
-  position: absolute;
-  top: 0;
-  left: 0;
+/* App Container */
+.appContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  background-color: #0c0d12;
+}
+
+@media (min-width: 1024px) {
+  .appContainer {
+    flex-direction: row;
+  }
+}
+
+/* Control Panel */
+.controlPanel {
+  width: 100%;
+  background-color: #1e293b;
+  padding: 1.5rem;
+  overflow-y: auto;
+  border-right: 1px solid #334155;
+  min-height: 300px;
+}
+
+@media (min-width: 1024px) {
+  .controlPanel {
+    width: 20rem;
+    min-height: 100%;
+  }
+}
+
+.panelTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 1.5rem;
+}
+
+/* Control Groups */
+.controlGroup {
+  margin-bottom: 1.25rem;
+}
+
+.controlLabel {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #cbd5e1;
+  margin-bottom: 0.5rem;
+}
+
+.controlSlider {
+  width: 100%;
+  height: 0.5rem;
+  background-color: #475569;
+  border-radius: 0.5rem;
+  appearance: none;
+  cursor: pointer;
+}
+
+.controlSlider:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.controlSlider::-webkit-slider-thumb {
+  appearance: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: #3b82f6;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.controlSlider::-moz-range-thumb {
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: #3b82f6;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+}
+
+.controlSubtitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 0.75rem;
+}
+
+/* Image Upload */
+.imageUploadContainer {
+  margin-bottom: 0.75rem;
+  padding: 0.75rem;
+  background-color: #334155;
+  border-radius: 0.5rem;
+}
+
+.imageUploadLabel {
+  display: block;
+  font-size: 0.875rem;
+  color: #cbd5e1;
+  margin-bottom: 0.5rem;
+}
+
+.imageUploadRow {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.imageUploadInput {
+  flex: 1;
+  font-size: 0.75rem;
+  color: #cbd5e1;
+}
+
+.imageUploadInput::file-selector-button {
+  margin-right: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.25rem;
+  border: none;
+  font-size: 0.875rem;
+  font-weight: 600;
+  background-color: #475569;
+  color: white;
+  cursor: pointer;
+}
+
+.imageUploadInput::file-selector-button:hover {
+  background-color: #64748b;
+}
+
+.imageUploadInput:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.imageUploadInput:disabled::file-selector-button {
+  background-color: #475569;
+  cursor: not-allowed;
+}
+
+.removeButton {
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.25rem;
+  border: none;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background-color: #ef4444;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.removeButton:hover {
+  background-color: #dc2626;
+}
+
+.removeButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #ef4444;
+}
+
+/* Action Buttons */
+.actionButtons {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.startButton,
+.resetButton {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.startButton {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.startButton:hover:not(:disabled) {
+  background-color: #2563eb;
+}
+
+.startButton:disabled {
+  background-color: #64748b;
+  cursor: not-allowed;
+}
+
+.resetButton {
+  background-color: #ef4444;
+  color: white;
+}
+
+.resetButton:hover {
+  background-color: #dc2626;
+}
+
+/* Game Area */
+.gameArea {
+  flex: 1;
+  position: relative;
+}
+
+.gameCanvas {
   width: 100%;
   height: 100%;
-  background-color: rgba(12, 13, 18, 0.85);
+  background-color: #0c0d12;
+  display: block;
+}
+
+.startMessage {
+  color: white;
+  font-size: 1.5rem;
   display: flex;
-  justify-content: center;
   align-items: center;
-  z-index: 1000;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* Winner Overlay */
+.winnerOverlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
 }
 
 .winnerCard {
-  background-color: #1e293b; /* slate-800 */
-  border: 1px solid #334155; /* slate-700 */
-  border-radius: 1rem; /* rounded-2xl */
-  padding: 2rem; /* p-8 */
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  width: 400px;
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 1rem;
+  padding: 2rem;
+  width: 24rem;
   max-width: 90vw;
-  transform: translate(-50%, -50%);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transition: all 0.3s ease;
-}
-
-.winnerCard:hover {
-  transform: translate(-50%, -50%) scale(1.02);
-  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.3);
-}
-
-.winnerContent {
   text-align: center;
 }
 
 .winnerTitle {
-  font-size: 2.25rem; /* text-4xl */
-  font-weight: 800; /* font-extrabold */
-  margin-bottom: 1.5rem; /* mb-6 */
-  letter-spacing: 0.025em; /* tracking-wide */
-}
-
-.winnerAnimation {
-  animation: bounce 1s infinite;
+  font-size: 2.25rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.025em;
 }
 
 @keyframes bounce {
@@ -73,7 +279,7 @@ body {
 }
 
 .winnerIconContainer {
-  margin-bottom: 2rem; /* mb-8 */
+  margin-bottom: 2rem;
 }
 
 .winnerIconWrapper {
@@ -82,36 +288,36 @@ body {
 }
 
 .winnerIcon {
-  width: 4rem; /* w-16 */
-  height: 4rem; /* h-16 */
-  border-radius: 50%; /* rounded-full */
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 .drawIcons {
   display: flex;
   justify-content: center;
-  gap: 0.5rem; /* space-x-2 */
+  gap: 0.5rem;
 }
 
 .drawIcon {
-  width: 1.25rem; /* w-5 */
-  height: 1.25rem; /* h-5 */
-  border-radius: 50%; /* rounded-full */
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 50%;
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 .drawIconFirst {
-  background-color: #ef4444; /* red-500 */
+  background-color: #ef4444;
 }
 
 .drawIconSecond {
-  background-color: #3b82f6; /* blue-500 */
+  background-color: #3b82f6;
   animation-delay: 0.1s;
 }
 
 .drawIconThird {
-  background-color: #10b981; /* green-500 */
+  background-color: #10b981;
   animation-delay: 0.2s;
 }
 
@@ -126,36 +332,28 @@ body {
 
 .restartButton {
   width: 100%;
-  padding: 0.75rem 1.5rem; /* px-6 py-3 */
-  border-radius: 0.75rem; /* rounded-xl */
-  background: #3b82f6; /* from-blue-500 to-blue-600 */
+  padding: 0.75rem 1.5rem;
+  background-color: #3b82f6;
   color: white;
-  font-size: 1.125rem; /* text-lg */
-  font-weight: 700; /* font-bold */
-  border: 1px solid #1d4ed8; /* border-blue-700 */
+  font-size: 1.125rem;
+  font-weight: 700;
+  border-radius: 0.75rem;
+  border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
-  transform: scale(1);
-}
-
-.restartButton:hover {
-  background: #2563eb; /* from-blue-600 to-blue-700 */
-  transform: scale(1.05);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-}
-
-.restartButton:active {
-  transform: scale(0.95);
-}
-
-.restartButtonContent {
+  transition: all 0.2s;
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 0.5rem;
+}
+
+.restartButton:hover {
+  background-color: #2563eb;
+  transform: scale(1.02);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
 .restartIcon {
-  width: 1.25rem; /* h-5 */
-  height: 1.25rem; /* w-5 */
-  margin-right: 0.5rem; /* mr-2 */
+  width: 1.25rem;
+  height: 1.25rem;
 }
